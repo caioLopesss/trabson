@@ -1,11 +1,15 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
-import Login from "../pages/login";
+import {Text,View,} from "react-native" 
+import styles from "./styles";
 
-export default function App() {
+
+export default function Index (){
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <Login />
-        </SafeAreaView>
-    );
+        <View style={styles.container}>
+       <Text style={styles.title}> hello word my friend</Text>
+        
+        </View>
+    )
 }
+
+
