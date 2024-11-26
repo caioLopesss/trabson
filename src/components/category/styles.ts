@@ -1,4 +1,4 @@
-import { colors } from "@/styles/colors";
+
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -10,6 +10,6 @@ export const styles = StyleSheet.create({
     name:{
         fontSize:15,
         fontWeight:'600',
-        color:colors.gray[400]
+        
     }
 })
