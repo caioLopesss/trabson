@@ -1,10 +1,17 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-
-export default function AddScreen() {
+import { MaterialIcons } from '@expo/vector-icons';
+import { View, Text,TouchableOpacity } from 'react-native';
+import { styles } from './styles';
+import { colors} from "@/styles/colors"
+export default function Add() {
   return (
-    <View>
-      <Text>Tela Add</Text>
-    </View>
+    <View style={styles.container}>
+        <View style={styles.header}>
+<TouchableOpacity>
+    <MaterialIcons name='arrow-back' size={32} color={colors.gray[200]}/>
+</TouchableOpacity>
+<Text style={styles.title}> Novo</Text>
+<Text style={styles.label}>Selecione uma categoria</Text>
+        </View>
+     </View>
   );
 }

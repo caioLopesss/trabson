@@ -17,6 +17,7 @@ export default function Index (){
         <MaterialIcons name="add" size={32} color={colors.green[300]}/>
         </TouchableOpacity>
             </View>
+            <>
         <Categories/>
         
         <FlatList
@@ -32,7 +33,7 @@ export default function Index (){
          contentContainerStyle={styles.linkContent}
          showsVerticalScrollIndicator={false}
          />
-         <Modal transparent visible={true}>
+        <Modal transparent visible={true}>
             <View style={styles.modal}>
                 <View style={styles.modalContent}>
                     <View style={styles.modalHeader}>
@@ -51,6 +52,7 @@ export default function Index (){
                 </View>
             </View>
          </Modal>
+         </>
         </View>
     )
 }
