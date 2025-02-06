@@ -7,23 +7,36 @@ import { router } from "expo-router";
 import { Categories } from "@/components/categories";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
+import { linkstorage } from "@/storage/link-storage";
 
 export default function Add() {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
-  function handleAdd() {
-    if (!category) {
-      return Alert.alert("Categoria", "selecione a categoria");
+  async function handleAdd() {
+    try {
+      if (!category) {
+        return Alert.alert("Categoria", "selecione a categoria");
+      }
+      if (!name.trim()) {
+        return Alert.alert("Nome", "Informe o nome");
+      }
+      if (!url.trim()) {
+        return Alert.alert("Url", "Informe a url");
+      }
+      await linkstorage.save({
+        id: new Date().getTime().toString(),
+        name,
+        url,
+        category,
+      });
+      const data = await linkstorage.get();
+      console.log(data);
+    } catch (error) {
+      Alert.alert("erro", "Nao foi possivel salvar o link");
+      console.log("error");
     }
-    if (!name.trim()) {
-      return Alert.alert("Nome", "Informe o nome");
-    }
-    if (!url.trim()) {
-      return Alert.alert("Url", "Informe a url");
-    }
-    console.log({ category, name, url });
   }
   return (
     <View style={styles.container}>
@@ -37,7 +50,12 @@ export default function Add() {
       <Categories onChange={setCategory} selected={category} />
       <View style={styles.form}>
         <Input placeholder="Nome" onChangeText={setName} autoCorrect={false} />
-        <Input placeholder="Url" onChangeText={setUrl} autoCorrect={false} />
+        <Input
+          placeholder="Url"
+          onChangeText={setUrl}
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
         <Button title="Adicionar" onPress={handleAdd} />
       </View>
     </View>

@@ -11,8 +11,8 @@ type LinkStorage = {
 
 async function get(): Promise<LinkStorage[]> {
   const storage = await AsyncStorage.getItem(LINKS_STORAGE_KEY);
-  const reponse = storage ? JSON.parse(storage) : [];
-  return reponse;
+  const response = storage ? JSON.parse(storage) : [];
+  return response;
 }
 
 async function save(newLink: LinkStorage) {
@@ -24,3 +24,5 @@ async function save(newLink: LinkStorage) {
     throw error;
   }
 }
+
+export const linkstorage = { get, save };
