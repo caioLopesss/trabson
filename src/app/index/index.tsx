@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import {
   Text,
   TouchableOpacity,
@@ -17,7 +17,7 @@ import { linkstorage, LinkStorage } from "@/storage/link-storage";
 
 import { Link } from "@/components/link";
 import { Option } from "@/components/option";
-import { router, Router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import { categories } from "@/utils/categories";
 
 export default function Index() {
@@ -32,9 +32,11 @@ export default function Index() {
       Alert.alert("Erro", "Nao foi possivel listar os  links");
     }
   }
-  useEffect(() => {
-    getLinks();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getLinks();
+    }, [])
+  );
   return (
     <View style={styles.container}>
       <View style={styles.header}>
